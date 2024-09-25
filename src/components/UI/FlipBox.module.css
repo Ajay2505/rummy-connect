@@ -1,0 +1,31 @@
+.box {
+    -webkit-perspective: 150rem;
+    perspective: 150rem;
+    -moz-perspective: 150rem;
+}
+
+.box > * {
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    transition: transform .3s ease-in;
+}
+
+.box.active > *:first-child {
+    -webkit-transform: rotateY(-180deg);
+    transform: rotateY(-180deg);
+}
+
+.box > *:nth-child(2) {
+    -webkit-transform: rotateY(180deg);
+    transform: rotateY(180deg);
+    position: absolute;
+    inset: 0;
+    /* top: 0;
+    left: 0; */
+    width: 100%;
+}
+
+.box.active > *:nth-child(2) {
+    -webkit-transform: rotateY(0);
+    transform: rotateY(0);
+}

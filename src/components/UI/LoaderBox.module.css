@@ -1,0 +1,85 @@
+.box {
+    opacity: 0;
+}
+
+.box.active {
+    opacity: 1;
+}
+
+.box,
+.bl {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+    --loader-height: 4px;
+}
+
+.box::before,
+.box::after,
+.bl::before,
+.bl::after {
+    content: "";
+    position: absolute;
+    background-color: var(--mainColor);
+}
+
+/* First Line */
+.box::after {
+    right: 0;
+    top: 0;
+    bottom: 0;
+    width: var(--loader-height);
+    will-change: top;
+}
+
+/* Second line */
+.bl::before {
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: var(--loader-height);
+    will-change: right;
+}
+
+/* Third Line */
+
+.bl::after {
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: var(--loader-height);
+    will-change: bottom;
+}
+
+
+/* Last Line */
+
+.box::before {
+    top: 0;
+    right: 0;
+    left: 0;
+    height: var(--loader-height);
+    will-change: left;
+}
+
+/*  */
+.box.active::before {
+    left: 100%;
+    transition: left calc(var(--timeLeft) / 4) ease-in calc((var(--timeLeft) / 4) * 3);
+}
+
+.box.active::after {
+    top: 100%;
+    transition: top calc(var(--timeLeft) / 4) ease-in;
+}
+
+.box.active .bl::before {
+    right: 100%;
+    transition: right calc(var(--timeLeft) / 4) ease-in calc(var(--timeLeft) / 4);
+}
+
+.box.active .bl::after {
+    bottom: 100%;
+    transition: bottom calc(var(--timeLeft) / 4) ease-in calc(var(--timeLeft) / 2);
+}

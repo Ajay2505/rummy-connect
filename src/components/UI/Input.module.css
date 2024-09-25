@@ -1,0 +1,85 @@
+.input {
+    width: 100%;
+    border: 1px solid #E6E9EB;
+    background-color: transparent;
+    outline: none;
+    padding: 10px 14px;
+}
+
+input.input:-webkit-autofill {
+    background-color: transparent !important;
+}
+
+.label {
+    position: absolute;
+    top: 0;
+    pointer-events: none;
+    left: 14px;
+    padding-inline: 2px;
+    color: #fbf5e79b;
+    background-color: var(--terColor);
+    opacity: 0;
+    font-weight: 400;
+    transform: translateY(10px);
+    will-change: opacity, transform, font-size;
+    transition: opacity .2s ease-in, transform .3s ease-in, font-size .3s ease-in;
+}
+
+.input:focus + .label,
+.input:not(:placeholder-shown) + .label {
+    opacity: 1;
+    font-size: 14px;
+    transform: translateY(-10px);
+}
+
+.input::placeholder {
+    opacity: 1;
+    color: inherit;
+    will-change: opacity;
+    opacity: .5;
+    transition: opacity .2s ease-in;
+}
+
+.input:focus::placeholder {
+    opacity: 0;
+}
+
+.options {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 40%;
+    z-index: 1;
+    background-color: inherit;
+    will-change: clip-path;
+    clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
+    transition: clip-path .2s ease-in .2s;
+    border: 1px solid #E6E9EB;
+}
+
+.input:focus + .label + .options,
+.input:not(:placeholder-shown) + .label .options,
+.options.active {
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
+    transition: clip-path .3s ease-in;
+}
+
+.options li button {
+    background-color: var(--terColor);
+    padding: 5px 14px;
+    display: block;
+    position: relative;
+    width: 100%;
+    text-align: left;
+    outline: none;
+    font-weight: 300;
+    transition: background-color .2s ease-in;
+}
+
+.options li button:hover {
+    background-color: #1f490e;
+}
+
+.options li button:focus {
+    border-block: 1px solid #E6E9EB;
+}

@@ -1,0 +1,27 @@
+.aside {
+    display: flex;
+    justify-content: space-around;    
+    z-index: 10;
+    background-color: #0006;
+    backdrop-filter: blur(7px);
+    pointer-events: auto;
+    width: 100%;
+}
+
+@media only screen and (min-width: 767px) {
+    .aside {
+        justify-content: start;
+        max-width: 70px;
+        height: 100%;
+        overflow-y: auto;
+        max-height: 100dvh;
+        padding: 50px 10px;
+        flex-direction: column;
+        overflow-x: hidden;
+        transition: max-width .2s ease-in-out;
+        border-radius: 12px 0 0 12px;
+    }    
+    .aside:hover {
+        max-width: 250px;
+    }
+}
