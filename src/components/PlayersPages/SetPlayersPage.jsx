@@ -1,6 +1,7 @@
 import { lazy, useState, useEffect } from "react";
 import { useLoaderData } from "react-router-dom";
 import socket from "../../helpers/socket/socketService";
+import MatchUpdates from "../UI/MatchUpdates";
 
 const playerPages = {
     2: lazy(() => import("./TwoPlayerPage")),
@@ -24,7 +25,6 @@ export default function SetPlayersPage({ children }) {
 
         socket.on("updatePlayers", handleUpdatePlayers);
 
-        // Cleanup function to remove the event listener
         return () => {
             socket.off("updatePlayers", handleUpdatePlayers);
         };
@@ -33,6 +33,7 @@ export default function SetPlayersPage({ children }) {
     return PlayerPage ? (
         <PlayerPage players={room.players || []}>
             {children}
+            <MatchUpdates />
         </PlayerPage>
     ) : <div></div>;
 }

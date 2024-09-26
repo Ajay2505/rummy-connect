@@ -58,14 +58,14 @@ export default function NewCards({ type }) {
             const transform = 0.25 * cardsWrapRef.current.children.length;
             cardPickBtnRef.current.style.transform = `translate(${transform}px, -${transform}px)`;
         }
-    }, [isMyTurn, playerAction, cardsWrapRef.current]);
+    }, [isMyTurn, playerAction]);
 
     return (
        <>
             {
                 isMyTurn === true && playerAction === "Pick" ? 
                 <div style={{ transition: `clip-path .1s ease-in ${isFocused ? "0s" : ".2s"}`, clipPath: `${isFocused ? "polygon(0 0, 100% 0, 100% 100%, 0% 100%)" : "polygon(0 100%, 100% 100%, 100% 100%, 0% 100%)"}` }} ref={cardPickBtnRef} className="z-[110] flex items-center bg-[rgba(0,0,0,0.3)] rounded-md justify-center absolute inset-0">
-                    <button onClick={cardPickHandler} className="px-4 font-medium rounded-md py-2 bg-[var(--terColor)] text-[var(--mainColor)]">Pick</button>
+                    <button onClick={cardPickHandler} className="lg:px-4 px-2 font-medium rounded-md lg:py-2 py-1 bg-[var(--terColor)] text-[var(--mainColor)]">Pick</button>
                 </div>                
                 : 
                 <>

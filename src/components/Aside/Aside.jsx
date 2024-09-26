@@ -72,7 +72,7 @@ export default function Aside() {
 
         return () => {
             socket.off("updates");
-            socket.off("redirect");
+            socket.off("redirect"); 
             socket.off("recieveMessage");
             if (matchUpdatesEl) {
                 matchUpdatesEl.innerHTML = "";
@@ -100,19 +100,19 @@ export default function Aside() {
                 <ChatUpdates showPopup={showUpdates} id={"matchUpdates"} title={"Match Updates"} onClose={() => setShowUpdates(false)} />
             </div>
             <aside className={classes.aside}>
-                <Link to={"#"} className="flex gap-5 items-center p-1 lg:p-3 w-full max-md:justify-center rounded hover:bg-[var(--terColor)]">
+                <Link to={"#"} className="flex gap-6 items-center p-1 lg:p-3 w-full max-md:justify-center rounded hover:bg-[var(--terColor)]">
                     <div className="w-8 lg:w-10 flex-shrink-0">
                         <img className="w-full invert" src="/icons/home-button.png" alt="Home Icon" />
                     </div>
                     <p className="text-nowrap hidden md:inline-block">Home</p>
                 </Link>
-                <button onClick={() => setShowUpdates(prev => !prev)} className="flex gap-5 items-center p-1 lg:p-3 w-full max-md:justify-center rounded hover:bg-[var(--terColor)]">
+                <button onClick={() => setShowUpdates(prev => !prev)} className="flex gap-6 items-center p-1 lg:p-3 w-full max-md:justify-center rounded hover:bg-[var(--terColor)]">
                     <div className="w-8 lg:w-10 flex-shrink-0">
                         <img loading="lazy" className="w-full" src="/icons/match-updates-white-v2.png" alt="Match Updates Icon" />
                     </div>
                     <p className="text-nowrap hidden md:inline-block">Match Updates</p>
                 </button>
-                <button onClick={() => setShowChats(prev => !prev)} className="flex gap-5 items-center p-1 lg:p-3 w-full max-md:justify-center rounded hover:bg-[var(--terColor)]">
+                <button onClick={() => setShowChats(prev => !prev)} className="flex gap-6 items-center p-1 lg:p-3 w-full max-md:justify-center rounded hover:bg-[var(--terColor)]">
                     <div className="w-8 lg:w-10 flex-shrink-0">
                         <img className="w-full invert" src="/icons/chat.png" alt="Chat Icon" />
                     </div>

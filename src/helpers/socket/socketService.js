@@ -1,19 +1,21 @@
+import { toast } from 'react-toastify';
 import io from 'socket.io-client';
 
 const socket = io(process.env.REACT_APP_BACKENDURL);
 
 socket.on('disconnect', () => {
+    toast.error("Connection error. Please try refreshing the page!");
     console.log('Disconnected from WebSocket server');
 });
 
 socket.on('connect_error', (error) => {
+    toast.error("Connection error. Please try refreshing the page!");
     console.error('Connection error:', error);
-    // alert('Could not connect to the WebSocket server. Please check your connection and try again.');
 });
 
 socket.on('reconnect_failed', () => {
+    toast.error("Connection error. Please try refreshing the page!");
     console.error('Reconnection failed.');
-    // alert('Reconnection to the WebSocket server failed. Please check your connection and try again.');
 });
 
 export default socket;

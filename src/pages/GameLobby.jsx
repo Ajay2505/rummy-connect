@@ -66,10 +66,12 @@ export default function GameRoom() {
     
     return (
         <SetPlayersPage>
-            <button onClick={startMatchHandler} type="button" className="px-4 py-2 text-center block mx-auto font-semibold rounded text-[var(--terColor)] bg-[var(--mainColor)]">Start Match</button>
-            <br />
-            <InviteBtn />
-        </SetPlayersPage>        
+            <div className="">
+                <button onClick={startMatchHandler} type="button" className="px-4 py-2 text-center block mx-auto font-semibold rounded text-[var(--terColor)] bg-[var(--mainColor)]">Start Match</button>
+                <br />
+                <InviteBtn />
+            </div>
+        </SetPlayersPage>
     );
 }
 

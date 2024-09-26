@@ -15,7 +15,7 @@ function InviteBtn() {
     }
 
     return (
-        <div className="flex justify-center items-center gap-2 border p-2 rounded">
+        <div className="flex flex-col lg:flex-row justify-center items-center gap-2 border p-2 rounded">
             <p>Invite your friends</p>
             <button onClick={copyLobbyUrl} className="px-4 py-2 text-center flex gap-2 items-center mx-auto font-semibold rounded text-[var(--terColor)] bg-[var(--mainColor)]">
                 {

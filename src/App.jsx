@@ -1,12 +1,13 @@
 import { Suspense, lazy, startTransition } from "react";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { Provider } from "react-redux";
+import { ToastContainer } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
+
 import "./index.css";
 import { store } from "./helpers/store";
 import Loader from "./components/UI/Loader";
 import RoomError from "./components/UI/RoomError";
-import { ToastContainer } from "react-toastify";
-import 'react-toastify/dist/ReactToastify.css';
 
 const Auth = lazy(() => import("./pages/Auth"));
 const Home = lazy(() => import("./pages/Home"));
@@ -50,12 +51,12 @@ const App = () => {
                 path: "room",
                 errorElement: <RoomError />,
                 shouldRevalidate: () => false,
+                loader: (meta) => import("./pages/GameLobby").then(module => module.loader(meta)),
                 element: (
                     <Suspense fallback={startTransition(() => <Loader />)}>
                         <GameLobby />
                     </Suspense>
                 ),
-                loader: (meta) => import("./pages/GameLobby").then(module => module.loader(meta)),
                 handle: { name: 'Game Lobby' }
             },
             {
@@ -104,7 +105,6 @@ const App = () => {
             draggable
             pauseOnHover={false}
             theme="dark"
-            // transition: "Bounce"
         />
     </Provider>
   );

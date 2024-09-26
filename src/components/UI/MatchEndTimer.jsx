@@ -67,13 +67,13 @@ function MatchEndTimer() {
     }, [playerCards, token, navigate]);
 
     return (
-        <div>
+        <>
             {showMessage && (
                 <div className="absolute inset-0 p-3 rounded z-20 bg-[rgba(0,0,0,0.8)]">
                     <p>{playerName} has won the match. Match ends in {timer}, arrange the cards before that to get lower points.</p>
                 </div>
             )}
-        </div>
+        </>
     );
 }
 

@@ -6,13 +6,11 @@ import ShowBtn from "../UI/Buttons/ShowBtn";
 function PlayerCardsBtns() {
 
     return(
-        <>
-            <div className="flex gap-2">
-                <ReArrangeBtn />
-                <DropBtn />
-                <ShowBtn />
-            </div>
-        </>
+        <div className="flex gap-2">
+            <ReArrangeBtn />
+            <DropBtn />
+            <ShowBtn />
+        </div>
     )
 }
 

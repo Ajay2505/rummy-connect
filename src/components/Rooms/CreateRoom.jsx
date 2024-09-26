@@ -19,11 +19,11 @@ export default function CreateRoom() {
             const formElement = evt.target.elements[key];
 
             if (formElement && formElement.type === "number") {
-                formDataObject[key] = Number(value); // Parse the value as a number
+                formDataObject[key] = Number(value);
             } else if (key === "timeLimit") {
-                formDataObject[key] = parseInt(value.slice(0, -1)); // Custom parsing for timeLimit
+                formDataObject[key] = parseInt(value.slice(0, -1));
             } else {
-                formDataObject[key] = value; // Default to the value as is
+                formDataObject[key] = value; 
             }
         });
 

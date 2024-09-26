@@ -24,10 +24,8 @@ function ShowBtn() {
 
     return <>
         {
-            (isMyTurn && playerAction === "Drop") ?
-            <>
-                <button onClick={showBtnHandler}>Show</button>
-            </> 
+            (isMyTurn && playerAction === "Drop") ?            
+            <button onClick={showBtnHandler}>Show</button>
             : <></>
         }
     </>

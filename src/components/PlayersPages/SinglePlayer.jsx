@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { memo } from 'react';
 import { useLoaderData, useLocation } from 'react-router-dom';
 
 import LoaderBox from '../UI/LoaderBox';
 
-export default function SinglePlayer(props) {
+function SinglePlayer(props) {
     const { player } = props;
     const location = useLocation();
     const loaderData = useLoaderData();
@@ -11,7 +11,7 @@ export default function SinglePlayer(props) {
     const activeStatus = location.pathname === "/room" ? player.playerStatus === "InLobby" : player.playerStatus === "InGame";
 
     return (
-        <div id={player.userName.replace(/\./g, '_').replace(/\s/g, '-')} className={`${props.className || ""} ${activeStatus ? "" : "opacity-30"} flex flex-col justify-between max-w-60 max-h-64 relative flex-shrink-0 overflow-hidden border border-[var(--mainColor)] shadow rounded-md hover:shadow-md transition-shadow`}>
+        <div id={player.userName.replace(/\./g, '_').replace(/\s/g, '-')} className={`${props.className || ""} ${activeStatus ? "" : "opacity-30"} flex flex-col justify-between max-w-36 max-h-64 relative flex-shrink-0 overflow-hidden border border-[var(--mainColor)] shadow rounded-md hover:shadow-md transition-shadow`}>
             {
                 player.isAdmin ?
                 <div className="absolute p-4">
@@ -51,11 +51,4 @@ export default function SinglePlayer(props) {
     );
 }
 
-// // Memoize the SinglePlayer component
-// export default React.memo(SinglePlayer, (prevProps, nextProps) => {
-//     return (
-//         prevProps.player?.playerName === nextProps.player?.playerName &&
-//         prevProps.player?.isOffline === nextProps.player?.isOffline &&
-//         prevProps.className === nextProps.className
-//     );
-// });
+export default memo(SinglePlayer);

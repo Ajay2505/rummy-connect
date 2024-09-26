@@ -13,6 +13,7 @@
         justify-content: start;
         max-width: 70px;
         height: 100%;
+        gap: 20px;
         overflow-y: auto;
         max-height: 100dvh;
         padding: 50px 10px;

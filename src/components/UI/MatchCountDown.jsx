@@ -27,13 +27,13 @@ export default function MatchCountDown() {
     }, [matchStartedAt]);
 
     return(        
-        <div>
+        <>
             {   
                 !!matchCountDown.show &&                 
                 <div className="animate-pulse">
                     <p>Match Starts in {matchCountDown.timeLeft}</p>
                 </div>
             }
-        </div>
+        </>
     )
 }

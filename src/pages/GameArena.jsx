@@ -57,15 +57,13 @@ export default function GameArena() {
     }, [room, playerState, token, dispatch]);
 
     return (
-        <div>
-            <SetPlayersPage>
-                <RummyCardsBox />
-            </SetPlayersPage>
+        <SetPlayersPage>
+            <RummyCardsBox />
             {
                 !!showPlayerCards &&
                 <PlayerCardsWrap />
             }
-        </div>
+        </SetPlayersPage>
     );
 }
 
@@ -118,7 +116,6 @@ export async function loader({ request }) {
             throw new Response(JSON.stringify(errorResponse), { status: res.status });
         }
     } catch (error) {
-        console.error(error);
         const errorResponse = await error.json();
         throw new Response(JSON.stringify(errorResponse), { status: errorResponse.status || 404 });
     }    

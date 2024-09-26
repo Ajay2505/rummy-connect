@@ -1,6 +1,6 @@
 
 import { useDispatch } from "react-redux";
-import DraggableWrap from "../UI/DraggableWrap";
+// import DraggableWrap from "../UI/DraggableWrap";
 import LoaderBox from "../UI/LoaderBox";
 import PlayerCardsGroups from "./PlayerCardGroups";
 import { addNewCardSet } from "../../helpers/slices/playerCardsSlice";
@@ -12,9 +12,9 @@ function PlayerCardsWrap({ className }) {
     
     return (
         <>
-            <section className={className ? className : "" + " overflow-hidden w-full fixed flex items-end lg:p-10 inset-0 z-10 pointer-events-none"}>
-                <DraggableWrap className="pointer-events-auto rounded-md flex-shrink-0 bg-[rgba(0,0,0,0.3)] overflow-hidden">
-                    <div className="p-3 transition-[width]">
+            <section className={className ? className : "" + " overflow-hidden w-full fixed flex items-end inset-0 z-10 pointer-events-none"}>
+                <div className="pointer-events-auto rounded-md max-w-full flex-shrink-0 overflow-hidden">
+                    <div className="p-2 transition-[width] relative">
                         <PlayerCardsBtns />
                         <LoaderBox loaderType={"PlayerCards"} />
                         <div id="playerCards" className="flex gap-2">
@@ -28,7 +28,7 @@ function PlayerCardsWrap({ className }) {
                             </div>
                         </div>
                     </div>
-                </DraggableWrap>
+                </div>
             </section>
         </>
     );

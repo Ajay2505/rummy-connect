@@ -25,7 +25,7 @@ export default function PlayerCardsGroups() {
         }
     }
 
-    return ( <div className="flex gap-2">
+    return ( <div className="flex gap-1 lg:gap-2">
             {
                 cardSets ?
                 <DragDropContext onDragEnd={onDragEnd}>
@@ -41,7 +41,7 @@ export default function PlayerCardsGroups() {
                                         ref={provided.innerRef}
                                         style={{ backgroundColor: snapshot.isDraggingOver ? "rgba(0,0,0,0.7)" : "rgba(0,0,0,0.3)" }}
                                         {...provided.droppableProps}
-                                        className="transition-[background-color] flex p-3 rounded"
+                                        className="transition-[background-color] flex p-1 lg:p-3 rounded"
                                     >
                                         {el?.map((item, index) => {
                                             return (
@@ -52,7 +52,7 @@ export default function PlayerCardsGroups() {
                                                 >
                                                     {(provided, snapshot) => (
                                                         <div
-                                                            className={`max-w-24 w-full relative ${index > 0 ? "ml-[-4rem]" : "ml-0"}`}
+                                                            className={`max-w-24 w-full relative ${index > 0 ? "ml-[-3rem] lg:ml-[-4rem]" : "ml-0"}`}
                                                             ref={provided.innerRef}
                                                             {...provided.draggableProps}
                                                             {...provided.dragHandleProps}
