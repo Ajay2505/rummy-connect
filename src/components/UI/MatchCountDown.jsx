@@ -30,7 +30,7 @@ export default function MatchCountDown() {
         <>
             {   
                 !!matchCountDown.show &&                 
-                <div className="animate-pulse">
+                <div className="animate-pulse text-center">
                     <p>Match Starts in {matchCountDown.timeLeft}</p>
                 </div>
             }

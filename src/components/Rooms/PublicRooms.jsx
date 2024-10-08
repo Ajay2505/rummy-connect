@@ -19,7 +19,7 @@ export default function PublicRooms() {
                 </Input>
                 <div className="max-h-72 overflow-y-auto">
                     <table className="w-full table-fixed">
-                        <thead className="sticky top-0 bg-[var(--terColor)]">  
+                        <thead className="sticky top-0">  
                             <tr>
                                 <th className="text-left">Room Name</th>
                                 {/* <th className="text-left">Bet Amount</th> */}

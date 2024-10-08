@@ -1,57 +1,62 @@
 import SinglePlayer from "./SinglePlayer";
 
-export default function FivePlayerPage(props) {
+export default function FivePlayerPage({ players, children }) {
+
     return (
-        <div className="min-h-screen w-full flex items-center justify-around gap-5 lg:justify-between px-10 py-4 flex-col">
-            {
-                !!props.players[0]
-                ?
-                    <SinglePlayer player={props.players[0]} />
-                :
-                <>
-                    <SinglePlayer className="animate-pulse" player={{userName: "Waiting for the Player to Join..."}} />
-                </>
-            }
-            <div className="flex flex-col xl:flex-row gap-5 w-full xl:justify-between items-center">
+        <div className="min-h-screen flex p-5 lg:p-10 gap-y-8 flex-row justify-between flex-wrap relative transition-[padding]">
+            <div className="flex flex-col justify-between gap-3  pt-24 lg:pt-28">
                 {
-                    !!props.players[1] 
+                    !!players && players[0]
                     ?
-                        <SinglePlayer player={props.players[1]} />
+                        <SinglePlayer className="self-start" player={players[0]} />
                     :
                     <>
-                        <SinglePlayer className="animate-pulse" player={{ userName: "Waiting for the Player to Join..." }} />
+                        <SinglePlayer className="animate-pulse self-start" player={{userName: "Waiting for the Player to Join..."}} />
                     </>
                 }
-                <div className="max-xl:-order-1 flex-shrink-0">
-                    {props.children}
-                </div>
                 {
-                    !!props.players[2] 
+                    !!players && players[1]
                     ?
-                        <SinglePlayer player={props.players[2]} />
+                        <SinglePlayer className="self-end" player={players[1]} />
                     :
                     <>
-                        <SinglePlayer className="animate-pulse" player={{userName: "Waiting for the Player to Join..."}} />
+                        <SinglePlayer className="animate-pulse self-end" player={{userName: "Waiting for the Player to Join..."}} />
                     </>
                 }
             </div>
-            <div className="flex flex-col xl:flex-row gap-5 w-full justify-around items-center">
+            <div className="flex flex-col gap-14 sm:w-full max-w-xs md:max-w-md ">
                 {
-                    !!props.players[3] 
+                    !!players && players[2]
                     ?
-                        <SinglePlayer player={props.players[3]} />
+                        <SinglePlayer className="self-end mx-auto" player={players[2]} />
                     :
                     <>
-                        <SinglePlayer className="animate-pulse" player={{userName: "Waiting for the Player to Join..."}} />
+                        <SinglePlayer className="animate-pulse self-end mx-auto" player={{userName: "Waiting for the Player to Join..."}} />
+                    </>
+                }
+                <div className="self-center w-full flex flex-col gap-3 flex-wrap">
+                    {children}
+                </div>
+            </div>
+            {/* <div className="self-center mx-auto sm:w-full max-w-xs md:max-w-md flex flex-col gap-3 flex-wrap">
+            </div> */}
+            <div className="flex flex-col justify-between gap-3 pt-24 lg:pt-28">
+                {
+                    !!players && players[3]
+                    ?
+                        <SinglePlayer className="self-end" player={players[3]} />
+                    :
+                    <>
+                        <SinglePlayer className="animate-pulse self-end" player={{userName: "Waiting for the Player to Join..."}} />
                     </>
                 }
                 {
-                    !!props.players[4]
+                    !!players && players[4]
                     ?
-                        <SinglePlayer player={props.players[4]} />
+                        <SinglePlayer className="self-end" player={players[4]} />
                     :
                     <>
-                        <SinglePlayer className="animate-pulse" player={{userName: "Waiting for the Player to Join..."}} />
+                        <SinglePlayer className="animate-pulse self-end" player={{userName: "Waiting for the Player to Join..."}} />
                     </>
                 }
             </div>

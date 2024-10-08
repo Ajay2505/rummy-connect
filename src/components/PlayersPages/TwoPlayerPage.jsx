@@ -3,7 +3,7 @@ import SinglePlayer from "./SinglePlayer";
 export default function TwoPlayerPage({ players, children }) {        
 
     return (
-        <div className="min-h-screen flex p-5 lg:p-10 gap-y-8 flex-row lg:justify-between flex-wrap relative">
+        <div className="min-h-screen flex p-5 lg:p-10 pt-24 lg:pt-28 gap-y-8 flex-row lg:justify-between flex-wrap relative">
             {
                 !!players && players[0]
                 ?
@@ -13,7 +13,7 @@ export default function TwoPlayerPage({ players, children }) {
                     <SinglePlayer className="animate-pulse" player={{userName: "Waiting for the Player to Join..."}} />
                 </>
             }
-            <div className="self-end lg:self-center mx-auto w-fit flex flex-col gap-3 flex-wrap">
+            <div className="self-center mx-auto sm:w-full max-w-xs md:max-w-md flex flex-col gap-3 flex-wrap">
                 {children}
             </div>
             {

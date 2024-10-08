@@ -1,5 +1,6 @@
 import { Outlet, useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
+
 import socket from '../../helpers/socket/socketService';
 import RoomChat from './RoomChat';
 
@@ -31,7 +32,7 @@ const GameLayout = () => {
                     </svg>
                 </div>
             </div>
-            <div className="fixed z-30 right-5 left-5 flex justify-end top-2">
+            <div className="fixed z-30 right-5 lg:right-10 left-5 flex justify-end top-2 pointer-events-none">
                 <div className="w-full">
                     <h3 className='text-end'><b>R</b>ummy <b>C</b>onnect</h3>
                     <RoomChat />

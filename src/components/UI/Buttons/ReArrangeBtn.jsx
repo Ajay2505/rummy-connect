@@ -7,7 +7,7 @@ import React from "react";
 
 function ReArrangeBtn() {
     const playerCardsWithDup = useSelector(getPlayerCards);
-    const playerCards = playerCardsWithDup.map(card => card.replace(/__dup$/, ''));
+    const playerCards = playerCardsWithDup.map(card => card?.replace(/__dup$/, '')) || [];
     const { joker, powerCards } = useLoaderData().room;
     const dispatch = useDispatch();
     const [clicked, setClicked] = useState(false);

@@ -1,41 +1,38 @@
 import SinglePlayer from "./SinglePlayer";
 
-export default function TwoPlayerPage(props) {
+export default function ThreePlayerPage({ players, children }) {
+
     return (
-        <div className="min-h-screen w-full flex items-center justify-around gap-5 lg:justify-between p-10 flex-col">
-            <div className="flex flex-col xl:flex-row gap-5 items-center justify-between w-full">
-                {
-                    !!props.players[0] 
-                    ?
-                        <SinglePlayer player={props.players[0]} />
-                    :
-                    <>
-                        <SinglePlayer className="animate-pulse" player={{userName: "Waiting for the Player to Join..."}} />
-                    </>
-                }
-                {
-                    <div className="max-xl:-order-1">
-                        {props.children}
-                    </div>
-                }
-                {
-                    !!props.players[1] 
-                    ?
-                        <SinglePlayer player={props.players[1]} />
-                    :
-                    <>
-                        <SinglePlayer className="animate-pulse" player={{userName: "Waiting for the Player to Join..."}} />
-                    </>
-                }
+        <div className="min-h-screen flex p-5 lg:p-10 pt-24 lg:pt-28 gap-y-8 flex-row justify-between flex-wrap relative transition-[padding]">
+            {
+                !!players && players[0]
+                ?
+                    <SinglePlayer className="self-start" player={players[0]} />
+                :
+                <>
+                    <SinglePlayer className="animate-pulse" player={{userName: "Waiting for the Player to Join..."}} />
+                </>
+            }
+            <div className="self-center mx-auto sm:w-full max-w-xs md:max-w-md flex flex-col gap-3 flex-wrap">
+                {children}
             </div>
-            <div className="flex justify-end w-full">
+            <div className="flex flex-col justify-between gap-3">
                 {
-                    !!props.players[2] 
+                    !!players && players[1]
                     ?
-                        <SinglePlayer player={props.players[2]} />
+                        <SinglePlayer className="self-end" player={players[1]} />
                     :
                     <>
-                        <SinglePlayer className="animate-pulse" player={{userName: "Waiting for the Player to Join..."}} />
+                        <SinglePlayer className="animate-pulse self-end" player={{userName: "Waiting for the Player to Join..."}} />
+                    </>
+                }
+                {
+                    !!players && players[2]
+                    ?
+                        <SinglePlayer className="self-end" player={players[2]} />
+                    :
+                    <>
+                        <SinglePlayer className="animate-pulse self-end" player={{userName: "Waiting for the Player to Join..."}} />
                     </>
                 }
             </div>

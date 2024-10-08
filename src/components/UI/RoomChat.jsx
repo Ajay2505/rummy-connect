@@ -1,6 +1,6 @@
 import { memo, useEffect, useRef, useState } from "react";
-import classes from "./RommChat.module.css";
 import socket from "../../helpers/socket/socketService";
+import classes from "./RommChat.module.css";
 
 function RoomChat() {
 
@@ -69,7 +69,7 @@ function RoomChat() {
 
     return (
         <>
-            <button onClick={showChatBtnHandler} className="relative w-8 lg:w-12 bg-[rgba(0,0,0,0.3)] p-1 lg:p-2 rounded ml-auto block">
+            <button onClick={showChatBtnHandler} className="relative w-8 pointer-events-auto lg:w-12 bg-[rgba(0,0,0,0.3)] p-1 lg:p-2 rounded ml-auto block">
                 {
                     !showChat ?
                     <img className="w-full invert" src="/icons/chat.png" alt="Chat Icon" />
@@ -89,7 +89,7 @@ function RoomChat() {
                     <p><strong>Room Chat</strong></p>
                 </div>
                 <div className="backdrop-blur flex flex-col items-end">
-                    <div className="flex flex-col-reverse customScrollBar overflow-auto w-full max-h-full h-72 max-h-[50dvh] transition-[height]">
+                    <div className="flex flex-col-reverse customScrollBar overflow-auto w-full max-h-full h-72 max-h-[40dvh] transition-[height]">
                         <div ref={chatBox} className="flex flex-col p-3 gap-2">
 
                         </div>

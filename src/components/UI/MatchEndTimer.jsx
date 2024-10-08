@@ -1,80 +1,100 @@
-import React, { useEffect, useState, useRef } from "react";
-import { useLoaderData, useNavigate } from "react-router-dom";
+import { memo, useEffect, useRef, useState } from "react";
+import { Link, useLoaderData, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 
 import socket from "../../helpers/socket/socketService";
 import { getPlayerCardGroups } from "../../helpers/slices/playerCardsSlice";
+import { toast } from "react-toastify";
 
 function MatchEndTimer() {
     const [showMessage, setShowMessage] = useState(false);
-    const { token } = useLoaderData();
-    const navigate = useNavigate();  
-
-    const [timer, setTimer] = useState(0);
     const [playerName, setPlayerName] = useState("");
+    const [redirectURL, setRedirectURL] = useState("#");
+    const [timer, setTimer] = useState(0);
 
+    const timeoutRef = useRef();
+    const timeIntervalRef = useRef();
+
+    const { token, room } = useLoaderData();
     const playerCards = useSelector(getPlayerCardGroups);
-    const timeIntervalRef = useRef(null);  // useRef for interval
-    const timeoutRef = useRef(null);  // useRef for timeout
+    const playerCardsRef = useRef(playerCards);
 
     useEffect(() => {
-        function decrementTimer() {
-            if (timeIntervalRef.current) {
-                clearInterval(timeIntervalRef.current);
-            }
-            timeIntervalRef.current = setInterval(() => {
-                setTimer(prevTimer => {
-                    if (prevTimer > 0) {
-                        return prevTimer - 1;
-                    } else {
-                        clearInterval(timeIntervalRef.current);
-                        return 0;
-                    }
-                });
-            }, 1000);
-        }
+        playerCardsRef.current = playerCards;
+    }, [playerCards]);
 
-        const handleMatchEndTimer = ({ redirectURL, timeLimit, showBy }) => {
-            socket.emit("setMyPoints", { token, playerCards }, (error) => {
-                if (error) {
-                    console.error(error);
-                }
-            });
+    const navigate = useNavigate();
 
+    useEffect(() => {
+        socket.on("matchEndTimer", ({ redirectURL, timeLimit, showBy }) => {
+            setRedirectURL(redirectURL);
+            setPlayerName(showBy || "");
             setShowMessage(true);
-            setTimer(parseInt(timeLimit));
+            setTimer(() => parseInt(timeLimit));
 
-            setPlayerName(showBy?.userName || "Unknown Player");
-
-            decrementTimer();
+            timeIntervalRef.current = setInterval(() => {
+                setTimer((prev) => prev - 1);
+            }, 1000);
 
             timeoutRef.current = setTimeout(() => {
+                // socket.emit("setMyPoints", { token, playerCards, inGame: false }, (res) => {
+                //     if (res && res?.err) {
+                //         toast.warn(res.err);
+                //     }
+                // });
                 navigate(redirectURL);
-            }, parseInt(timeLimit) * 1000); 
-        };
+            }, parseInt(timeLimit) * 1000 + 1000 || 5000);
 
-        socket.on("matchEndTimer", handleMatchEndTimer);
+            socket.emit("setMyPoints", { token, playerCards: playerCardsRef.current, matchID: room.matchID }, (res) => {
+                    if (res && res?.err) {
+                        toast.warn(res.err);
+                    }
+                }
+            );
+        });
 
         return () => {
+            if (timeoutRef.current) {
+                clearTimeout(timeoutRef.current);
+                console.log(playerCardsRef.current, "cleanup");
+                socket.emit("setMyPoints", { token, playerCards: playerCardsRef.current, matchID: room.matchID }, (res) => {
+                        if (res && res?.err) {
+                            toast.warn(res.err);
+                            return;
+                        }
+                        if (res.redirectURL) {
+                            navigate(res.redirectURL);
+                        }
+                    }
+                );
+            }
             if (timeIntervalRef.current) {
                 clearInterval(timeIntervalRef.current);
             }
-            if (timeoutRef.current) {
-                clearTimeout(timeoutRef.current);
-            }
-            socket.off("matchEndTimer", handleMatchEndTimer);
+            socket.off("matchEndTimer");
         };
-    }, [playerCards, token, navigate]);
+    }, []);
 
     return (
         <>
             {showMessage && (
-                <div className="absolute inset-0 p-3 rounded z-20 bg-[rgba(0,0,0,0.8)]">
-                    <p>{playerName} has won the match. Match ends in {timer}, arrange the cards before that to get lower points.</p>
+                <div className="absolute inset-0 p-3 rounded z-20 bg-[rgba(0,0,0,0.85)]">
+                    <p>
+                        {playerName} has won the match. Match ends in {timer} seconds,
+                        arrange the cards before timer ends and continue to get lower
+                        points.
+                    </p>
+                    <Link
+                        to={redirectURL}
+                        type="button"
+                        className="block font-semibold w-fit mx-auto bg-[var(--mainColor)] p-3 rounded text-[var(--terColor)]"
+                    >
+                        Continue
+                    </Link>
                 </div>
             )}
         </>
     );
 }
 
-export default React.memo(MatchEndTimer);
+export default memo(MatchEndTimer);

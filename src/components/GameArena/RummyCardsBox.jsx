@@ -16,7 +16,7 @@ export default function RummyCardsBox({ className }) {
         <div className="relative">
             <MatchCountDown />
             <MatchEndTimer />
-            <MainBox className={`bg-[rgba(0,0,0,0.3)] w-full overflow-hidden items-center px-3 lg:px-6 pt-6 pb-2 gap-2 flex z-10 relative${className ? " " + className : ""}`}> 
+            <MainBox className={`bg-[rgba(0,0,0,0.3)] w-fit mx-auto overflow-hidden items-center px-3 lg:px-6 pt-6 pb-2 gap-2 flex z-10 relative${className ? " " + className : ""}`}> 
                 <LoaderBox loaderType="MatchCards" />
                 <div className="img_wrapper max-w-16 lg:max-w-24 flex-shrink-0 relative">
                     <img src="/cards/empty-card.png" alt="Empty card" loading="eager" />
