@@ -1,7 +1,11 @@
 import { toast } from 'react-toastify';
 import io from 'socket.io-client';
 
-const socket = io(process.env.REACT_APP_BACKENDURL, { secure: true });
+const socket = io(process.env.REACT_APP_BACKENDURL, {
+    path: '/server', // Ensure this matches the backend Socket.io path
+    secure: true,    // Use secure connection
+    transports: ['websocket'], // Force WebSocket transport
+});
 
 socket.on('disconnect', () => {
     toast.error("Connection error. Please try refreshing the page!");
