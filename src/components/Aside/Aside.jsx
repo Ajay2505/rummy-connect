@@ -43,7 +43,6 @@ export default function Aside() {
     useEffect(() => {
         const matchUpdatesEl = document.getElementById("matchUpdates");
         const chatBox = document.getElementById("chatBox");
-        console.log("aside");
 
         socket.on("updates", update => {
             if (matchUpdatesEl) {

@@ -41,7 +41,6 @@ function RoomChat() {
         socket.on("recieveMessage", message => {
             if (chatBox.current) {
                 if(showChat === false) {
-                    console.log(msgCounter);
                     setMsgCounter((prev) => prev+1);
                 }
                 const messageEL = document.createElement("div");

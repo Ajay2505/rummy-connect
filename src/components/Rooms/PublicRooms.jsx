@@ -5,7 +5,6 @@ import MainBox from "../UI/MainBox";
 export default function PublicRooms() {
 
     const { rooms } = useLoaderData() || [];
-    console.log(rooms);
 
     return (
         <>

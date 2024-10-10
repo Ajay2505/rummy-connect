@@ -32,7 +32,6 @@ export default function SetPlayersPage({ children }) {
         
                 if (inGame && playersChanged) {
                     if (data.players && data.players.length < prev.players.length) {
-                        console.log("s");
                         const updatedPlayers = prev.players.map((player) => {
                             const isPlayerInNewData = data.players.findIndex(p => p.userName === player.userName);
                             if (isPlayerInNewData < 0) {

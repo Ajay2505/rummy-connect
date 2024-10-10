@@ -56,7 +56,6 @@ function MatchEndTimer() {
         return () => {
             if (timeoutRef.current) {
                 clearTimeout(timeoutRef.current);
-                console.log(playerCardsRef.current, "cleanup");
                 socket.emit("setMyPoints", { token, playerCards: playerCardsRef.current, matchID: room.matchID }, (res) => {
                         if (res && res?.err) {
                             toast.warn(res.err);

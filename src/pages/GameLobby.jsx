@@ -1,12 +1,12 @@
 
 import { useEffect } from "react";
 import { useLoaderData, useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
-import socket from "../helpers/socket/socketService";
 import { Constants } from "../helpers/Constants";
+import socket from "../helpers/socket/socketService";
 import SetPlayersPage from "../components/PlayersPages/SetPlayersPage";
 import InviteBtn from "../components/UI/Buttons/InviteBtn";
-import { toast } from "react-toastify";
 
 export default function GameRoom() {
     const navigate = useNavigate();
@@ -14,9 +14,9 @@ export default function GameRoom() {
 
     useEffect(() => {
         socket.emit("joinLobby", ({ token }), error => {
-            console.log(error);
             if (error) {
-                navigate('/error', { state: { error } });
+                toast.warn(error);
+                // navigate('/error', { state: { error } });
                 return;
             }
         });

@@ -7,7 +7,6 @@ function SinglePlayer(props) {
     const { player } = props;
     const location = useLocation();
     const loaderData = useLoaderData();
-    console.log(player);
     const activeStatus = location.pathname === "/room" ? player.playerStatus === "InLobby" : player.playerStatus === "InGame";
 
     return (

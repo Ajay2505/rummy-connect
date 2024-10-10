@@ -124,8 +124,6 @@ export async function loader({ request }) {
                 resolve(res);
             });
         });
-
-        console.log(response);
         
         return response;
         // const res = await fetch(Constants.matchResults + "?match_id=" + queryParams["match_id"], {
